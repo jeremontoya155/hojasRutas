@@ -2,6 +2,7 @@ const express = require('express');
 const http = require('http');
 const socketIo = require('socket.io');
 const path = require('path');
+require('dotenv').config();
 
 const app = express();
 const server = http.createServer(app);
@@ -31,6 +32,8 @@ io.on('connection', (socket) => {
     });
 });
 
-server.listen(3000, () => {
-    console.log('Server is running on port 3000');
+// Usa el puerto especificado en .env o el puerto 3000 por defecto
+const PORT = process.env.PORT || 3000;
+server.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
 });
